@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio - Mustafa Abdulkarim Salman</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary-color: #2563eb;
+      --secondary-color: #1e40af;
+      --text-color: #1f2937;
+      --bg-color: #f8fafc;
+      --card-bg: #ffffff;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: var(--bg-color);
+      margin: 0;
+      padding: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .header {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 2rem;
+      align-items: center;
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+
+    .header img {
+      width: 200px;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .header img:hover {
+      transform: scale(1.02);
+    }
+
+    .lang-switch {
+      text-align: right;
+      margin-bottom: 2rem;
+    }
+
+    .lang-switch a {
+      padding: 0.5rem 1rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .lang-switch a:hover {
+      background-color: rgba(37, 99, 235, 0.1);
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-color);
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 2rem 0 1rem;
+      color: var(--text-color);
+      border-bottom: 3px solid var(--primary-color);
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+
+    .project {
+      background: var(--card-bg);
+      border-radius: 16px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .project:hover {
+      transform: translateY(-5px);
+    }
+
+    .project h3 {
+      color: var(--primary-color);
+      margin-top: 0;
+    }
+
+    .project-images {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .project-images img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .project-images img:hover {
+      transform: scale(1.05);
+    }
+
+    .download-cv {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background-color: var(--primary-color);
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+      margin-top: 1.5rem;
+    }
+
+    .download-cv:hover {
+      background-color: var(--secondary-color);
+    }
+
+    .contact {
+      background: var(--card-bg);
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact a {
+      color: var(--primary-color);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact a:hover {
+      color: var(--secondary-color);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .social-links a {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      transition: transform 0.3s ease;
+    }
+
+    .social-links a:hover {
+      transform: translateY(-3px);
+    }
+
+    .lightbox {
+      display: none;
+      position: fixed;
+      z-index: 9999;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .lightbox img {
+      max-width: 90%;
+      max-height: 90vh;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+
+    @media (max-width: 768px) {
+      .header {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .header img {
+        margin: 0 auto;
+      }
+
+      .project-images {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      }
+    }
+
+    .project-tech {
+      margin: 1rem 0;
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .tech-tag {
+      background: rgba(37, 99, 235, 0.1);
+      color: var(--primary-color);
+      padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
+      font-size: 0.9rem;
+    }
+
+    .project ul {
+      padding-left: 1.5rem;
+      margin: 1rem 0;
+    }
+
+    .project li {
+      margin-bottom: 0.5rem;
+      color: var(--text-color);
+    }
+
+    .project-links {
+      margin: 1.5rem 0;
+    }
+
+    .demo-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary-color);
+      text-decoration: none;
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--primary-color);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .demo-link:hover {
+      background: var(--primary-color);
+      color: white;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="lang-switch">
+      <a href="index-ar.html">Arabic</a> | <a href="index-eng.html">English</a>
+    </div>
+
+    <div class="header">
+      <div>
+        <h1>Mustafa Abdulkarim Salman</h1>
+        <h4>Computer Engineer | Master's in Information Technology</h4>
+        <p>Full-stack web developer specializing in building integrated digital solutions using React, Node.js, and SQL Server. Experienced in designing advanced databases and responsive interfaces.</p>
+        <p>Leading digital transformation projects for governmental and private organizations with a focus on operational efficiency and user experience.</p>
+        <a href="CV.pdf" class="download-cv" target="_blank">
+          <i class="fas fa-download"></i>
+          Download CV
+        </a>
+      </div>
+      <img src="photo.jpg" alt="Mustafa Abdulkarim Profile Picture">
+    </div>
+
+    <h2>Selected Projects</h2>
+
+    <div class="project">
+      <h3>Integrated Smart Form Management System</h3>
+      <div class="project-tech">
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">SQL Server</span>
+        <span class="tech-tag">PDF Generation</span>
+      </div>
+      <p>A comprehensive system for managing online forms, featuring:</p>
+      <ul>
+        <li>User-friendly interface with live validation</li>
+        <li>Advanced Arabic PDF report generation</li>
+        <li>Admin dashboard to track and manage submissions</li>
+        <li>REST API integration with external systems</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://demo1.yourdomain.com" target="_blank" class="demo-link">
+          <i class="fas fa-external-link-alt"></i>
+          View Project
+        </a>
+      </div>
+      <div class="project-images">
+        <img src="form1.jpg" onclick="openLightbox(this.src)" alt="Form Input Interface" />
+        <img src="form2.jpg" onclick="openLightbox(this.src)" alt="Admin Dashboard" />
+        <img src="form3.jpg" onclick="openLightbox(this.src)" alt="PDF Template" />
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>HR & Payroll Management System</h3>
+      <div class="project-tech">
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">SQL Server</span>
+        <span class="tech-tag">REST API</span>
+      </div>
+      <p>An end-to-end solution for managing employee data and payroll processing, including:</p>
+      <ul>
+        <li>Employee records and attendance management</li>
+        <li>Automated salary calculations with deductions and bonuses</li>
+        <li>Monthly and annual report generation</li>
+        <li>Smart notifications for leaves and dues</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://demo2.yourdomain.com" target="_blank" class="demo-link">
+          <i class="fas fa-external-link-alt"></i>
+          View Project
+        </a>
+      </div>
+      <div class="project-images">
+        <img src="hr1.jpg" onclick="openLightbox(this.src)" alt="Employee Management" />
+        <img src="hr2.jpg" onclick="openLightbox(this.src)" alt="Payroll Module" />
+        <img src="hr3.jpg" onclick="openLightbox(this.src)" alt="Monthly Reports" />
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>Advanced Analytical Dashboard</h3>
+      <div class="project-tech">
+        <span class="tech-tag">React</span>
+        <span class="tech-tag">D3.js</span>
+        <span class="tech-tag">Node.js</span>
+        <span class="tech-tag">WebSocket</span>
+      </div>
+      <p>A powerful live data dashboard system with:</p>
+      <ul>
+        <li>Interactive charts with real-time updates</li>
+        <li>Advanced filtering and analytical tools</li>
+        <li>Report export in multiple formats</li>
+        <li>Fully customizable interface per user role</li>
+      </ul>
+      <div class="project-links">
+        <a href="https://demo3.yourdomain.com" target="_blank" class="demo-link">
+          <i class="fas fa-external-link-alt"></i>
+          View Project
+        </a>
+      </div>
+      <div class="project-images">
+        <img src="dash1.jpg" onclick="openLightbox(this.src)" alt="Main Metrics" />
+        <img src="dash2.jpg" onclick="openLightbox(this.src)" alt="Detailed Analysis" />
+        <img src="dash3.jpg" onclick="openLightbox(this.src)" alt="Custom Reports" />
+      </div>
+    </div>
+
+    <div class="contact">
+      <h2>Contact Me</h2>
+      <div class="social-links">
+        <a href="https://linkedin.com/in/yourname" target="_blank" title="LinkedIn">
+          <i class="fab fa-linkedin"></i>
+        </a>
+        <a href="mailto:mustapha.ak1989@gmail.com" title="Email">
+          <i class="fas fa-envelope"></i>
+        </a>
+        <a href="https://wa.me/07830111108" target="_blank" title="WhatsApp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </div>
+      <p><i class="fas fa-envelope"></i> mustapha.ak1989@gmail.com</p>
+      <p><i class="fas fa-phone"></i> 07830111108</p>
+    </div>
+  </div>
+
+  <div class="lightbox" id="lightbox" onclick="this.style.display='none'">
+    <img id="lightbox-img" src="" alt="Project Preview" />
+  </div>
+
+  <script>
+    function openLightbox(src) {
+      const lightbox = document.getElementById("lightbox");
+      const img = document.getElementById("lightbox-img");
+      img.src = src;
+      lightbox.style.display = "flex";
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.getElementById('lightbox').style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
